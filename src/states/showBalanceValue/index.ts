@@ -4,7 +4,7 @@ import { customLocalStorage } from '@/utils/storage';
 import { createReStateMethods, onReStateChange } from '@raulpesilva/re-state';
 
 const key = 'showBalanceValue';
-const initialValue = true;
+const initialValue = false;
 
 const getInitialValue = () => customLocalStorage.getItem<boolean>(key) ?? initialValue;
 
