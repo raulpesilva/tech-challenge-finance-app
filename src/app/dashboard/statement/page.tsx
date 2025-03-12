@@ -10,7 +10,7 @@ import { redirect } from 'next/navigation';
 import styles from './styles.module.scss';
 
 interface PageProps {
-  searchParams: { page?: string; query?: string; category?: string };
+  searchParams: Promise<{ page?: string; query?: string; category?: string }>;
 }
 
 const itemsPerPage = 10;
@@ -19,10 +19,10 @@ const requestLimit = itemsPerPage + 1;
 export default async function Page({ searchParams }: PageProps) {
   const user = await getUser();
   if (!user) return null;
-
-  const page = searchParams.page ? Number(searchParams.page) : 1;
-  const query = searchParams.query;
-  const category = CATEGORIES_TYPES_DICTIONARY_MAP[searchParams.category as CategoryTypeDictionaryValue];
+  const awaitedSearchParams = await searchParams;
+  const page = awaitedSearchParams.page ? Number(awaitedSearchParams.page) : 1;
+  const query = awaitedSearchParams.query;
+  const category = CATEGORIES_TYPES_DICTIONARY_MAP[awaitedSearchParams.category as CategoryTypeDictionaryValue];
   const startRequest = (page - 1) * itemsPerPage;
   const endRequest = startRequest + requestLimit;
 

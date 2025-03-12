@@ -52,5 +52,14 @@
     "prettier": "^3.4.2",
     "storybook": "8.4.7",
     "typescript": "^5"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@parcel/watcher",
+      "bcrypt",
+      "core-js-pure",
+      "esbuild",
+      "sharp"
+    ]
   }
 }
