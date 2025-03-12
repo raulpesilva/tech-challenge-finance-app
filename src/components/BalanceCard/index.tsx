@@ -6,7 +6,7 @@ import { getTransactionsByUser } from '@/services/transaction';
 import { fullDate } from '@/utils/date/fullDate';
 import { capitalize } from '@/utils/string';
 import Image from 'next/image';
-import { BalanceValue } from '../BalanceValue';
+import { BalanceCardClient } from '../BalanceCardClient';
 import { Typography } from '../shared/Typography';
 import styles from './styles.module.scss';
 
@@ -51,7 +51,7 @@ export const BalanceCard = async ({ user }: BalanceCardProps) => {
           className={styles.banner}
         />
 
-        <BalanceValue balance={balance} />
+        <BalanceCardClient balance={balance} />
       </div>
     </section>
   );
