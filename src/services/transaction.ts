@@ -38,7 +38,7 @@ export const getTransactionById = async (id: string) => {
   'use server';
 
   if (process.env.NODE_ENV === 'production') {
-    return MOCK_TRANSACTIONS.find((transaction) => transaction.id === id);
+    return MOCK_TRANSACTIONS.find((transaction) => transaction.id === id) || MOCK_TRANSACTIONS[0];
   }
 
   const response = await fetch(`${BASE_URL}/${id}`);
