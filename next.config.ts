@@ -9,6 +9,10 @@ const nextConfig: NextConfig = {
         source: '/dashboard/settings',
         destination: `${SETTINGS_URL}/dashboard/settings`,
       },
+      {
+        source: "/mfe/_next/:path+",
+        destination: `${SETTINGS_URL}/mfe/_next/:path+`,
+      },
     ];
   },
   sassOptions: {
