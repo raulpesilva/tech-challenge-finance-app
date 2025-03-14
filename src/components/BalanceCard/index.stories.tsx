@@ -1,8 +1,13 @@
-import db from '@/mock/server/db.json';
 import type { Meta, StoryObj } from '@storybook/react';
 import { BalanceCard } from './index';
 
-const user = db.users[0];
+const user = {
+  id: 'e00a',
+  name: 'raul ',
+  email: 'admin@yellowcam.com',
+  password: '$2b$10$GvmWGm/8gF9NwHDzMGbPHOZLUnBc3J3eB3aL9blyY2976P77iZWZW',
+  acceptedTerm: false,
+};
 
 const meta: Meta<typeof BalanceCard> = {
   title: 'Components/BalanceCard',
