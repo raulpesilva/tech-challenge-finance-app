@@ -1,4 +1,6 @@
-export const MOCK_TRANSACTIONS = [
+import { Transaction } from '@/@types/transaction';
+
+export const MOCK_TRANSACTIONS: Transaction[] = [
   {
     id: '974c',
     type: 'withdraw',
