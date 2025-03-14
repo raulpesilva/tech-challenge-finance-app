@@ -76,7 +76,8 @@ export const createTransactionAction = async (_state: CreateTransactionResponse,
       inputs: { ...response.inputs, value: '', date: '', dateIso: '', category: '', title: '', attachment: '' },
       success: true,
     };
-  } catch {
+  } catch(error) {
+
     return { ...response, success: false, errors: { type: ['Erro ao criar transação'] } };
   }
 };
