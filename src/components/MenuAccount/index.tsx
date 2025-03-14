@@ -1,3 +1,4 @@
+import '@/assets/images/main-banner-under-construction.png';
 import { NavLink } from '@/components/shared/NavLink';
 import { logout } from '@/lib/auth/logout';
 import { redirect } from 'next/navigation';
@@ -17,9 +18,7 @@ export const MenuAccount = () => {
         Minha conta
       </NavLink>
 
-      <NavLink href='/dashboard/settings' color='cta' colorActive='secondary' replace>
-        Configurações
-      </NavLink>
+      <a href='/dashboard/settings'>Configurações</a>
 
       <form action={handleLogout}>
         <LogoutButton />
