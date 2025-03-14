@@ -145,6 +145,5 @@ export const updateTransactionAction = async (_state: UpdateTransactionResponse,
 
 export const deleteTransactionAction = async (id: string, formData: FormData) => {
   await deleteTransaction(id);
-  console.log(formData);
   revalidatePath('/dashboard');
 };
