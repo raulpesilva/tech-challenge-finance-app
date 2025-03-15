@@ -6,12 +6,18 @@ import DeleteIcon from '@/assets/icons/delete-icon.svg';
 import EditIcon from '@/assets/icons/edit-icon.svg';
 import { formatCurrency } from '@/utils/formatCurrency';
 import dayjs from 'dayjs';
+import Image from 'next/image';
 import { ButtonIcon } from '../shared/ButtonIcon';
 import { ButtonLink } from '../shared/ButtonLink';
 import { Typography } from '../shared/Typography';
 import styles from './styles.module.scss';
 
-export const TransactionCard = ({ transaction }: { transaction: Transaction }) => {
+interface TransactionCardProps {
+  transaction: Transaction;
+  full?: boolean;
+}
+
+export const TransactionCard = ({ transaction, full }: TransactionCardProps) => {
   const id = transaction.id;
   const type = transaction.type;
   const title = transaction.title;
@@ -44,7 +50,7 @@ export const TransactionCard = ({ transaction }: { transaction: Transaction }) =
           {title}
         </Typography>
 
-        {attachment && <AttachmentIcon />}
+        {attachment && !full && <AttachmentIcon />}
       </div>
 
       <Typography variant='paragraph'>{TRANSACTIONS_TYPES_DICTIONARY[type] ?? ''}</Typography>
@@ -54,6 +60,17 @@ export const TransactionCard = ({ transaction }: { transaction: Transaction }) =
       <Typography variant='paragraph' weight='semiBold'>
         {formatCurrency(amount)}
       </Typography>
+
+      {attachment && full && (
+        <Image
+          src={attachment as string}
+          alt={'Image'}
+          className={styles.imageAttachment}
+          layout='responsive'
+          width={100}
+          height={100}
+        />
+      )}
 
       <div className={styles.actions}>
         <ButtonLink
