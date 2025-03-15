@@ -18,7 +18,9 @@ export const MenuAccount = () => {
         Minha conta
       </NavLink>
 
-      <a href='/dashboard/settings'>Configurações</a>
+      <a href='/dashboard/settings' className={styles.linkConfig}>
+        Configurações
+      </a>
 
       <form action={handleLogout}>
         <LogoutButton />
