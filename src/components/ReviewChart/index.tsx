@@ -25,15 +25,14 @@ const COLORS = ['#004d61', '#ff5031', '#47a138', '#bf1313'];
 
 const getChartData = (transactions: Transaction[]) => {
   const values = transactions.reduce(
-    (acc, transaction, i) => {
+    (acc, transaction) => {
       const type = transaction.type;
       const value = transaction.value / 100;
-      const color = COLORS[i] ?? '#004d61';
 
-      if (!acc[type]) return { ...acc, [type]: { name: TRANSACTIONS_TYPES_DICTIONARY[type], Valor: value, color } };
-      return { ...acc, [type]: { ...acc[type], Valor: acc[type].Valor + value, color } };
+      if (!acc[type]) return { ...acc, [type]: { name: TRANSACTIONS_TYPES_DICTIONARY[type], Valor: value } };
+      return { ...acc, [type]: { ...acc[type], Valor: acc[type].Valor + value } };
     },
-    {} as { [key: string]: { name: string; Valor: number; color: string } }
+    {} as { [key: string]: { name: string; Valor: number } }
   );
 
   return Object.values(values);
@@ -79,8 +78,8 @@ export const ReviewChart = ({ transactions }: ReviewChartProps) => {
           />
 
           <Bar dataKey='Valor' radius={[8, 8, 0, 0]} label={renderCustomLabel} barSize={16}>
-            {data.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={entry.color} />
+            {data.map((_, index) => (
+              <Cell key={`cell-${index}`} fill={COLORS[index] ?? '#004d61'} />
             ))}
           </Bar>
         </BarChart>
