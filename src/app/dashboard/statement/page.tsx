@@ -42,7 +42,9 @@ export default async function Page({ searchParams }: PageProps) {
 
   return (
     <div className={styles.container}>
-      <Typography variant='heading1' size='xl'>Extrato completo</Typography>
+      <Typography variant='heading1' size='xl'>
+        Extrato completo
+      </Typography>
 
       <div className={styles.controlsContainer}>
         <Search />
@@ -58,7 +60,7 @@ export default async function Page({ searchParams }: PageProps) {
       {!!transactionsSlice.length && (
         <div className={styles.transactions}>
           {transactionsSlice.map((transaction) => (
-            <TransactionCard key={transaction.id} transaction={transaction} />
+            <TransactionCard key={transaction.id} transaction={transaction} full />
           ))}
         </div>
       )}
