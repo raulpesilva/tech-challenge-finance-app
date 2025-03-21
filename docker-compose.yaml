@@ -8,8 +8,7 @@ services:
     working_dir: /app
     volumes:
       - ./src/mock/server:/app
-    networks:
-      - private_network
+    network_mode: host
     command: ['npx', 'json-server', '--watch', 'db.json', '--port', '3001']
 
   front-end:
@@ -20,14 +19,15 @@ services:
     ports:
       - '3000:3000'
     restart: always
+    extra_hosts:
+      - host.docker.internal:host-gateway
     depends_on:
       - back-end
-    networks:
-      - private_network
+    network_mode: host
     environment:
       - JWT_SECRET=secret123
-      - REACT_API_URL=http://back-end:3001
+      - REACT_API_URL=http://host.docker.internal:3001
+      - SETTINGS_URL=http://host.docker.internal:3002
 
-networks:
-  private_network:
-    driver: bridge
+
+
